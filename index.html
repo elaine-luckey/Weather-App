@@ -1,1 +1,53 @@
-<!-- Creation of file -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
+
+    <link rel="shortcut icon" href="./Assets/images/german-shepherd-2.jpg" type="image/x-icon">
+
+    <link rel="stylesheet" href="./assets/css/style.css">
+
+    <title>5 Day Weather Forecast</title>
+</head>
+<body>
+    <header>
+        <h1>5 Day Weather Dashboard</h1>
+    </header>
+    <div class="main-container">
+        <aside>
+            <form class="search-form">
+                <label for="city-name">
+                    <h2>Search for a City:</h2>
+                </label>
+                <input id="city-name" type="text" placeholder="Washington, D.C.">
+                <button id="search-btn" type="submit">Search</button>
+            </form>
+            <hr>
+            <div class="searched-cities">
+                <!-- Render search history of the cities -->
+            </div>
+        </aside>
+        <section class="hide">
+            <div class="current-weather-container">
+                <!-- Current weather container will render without JavaScript -->
+                <h2><span id="current-city">Washington, D.C.</span> <span id="current-date">(07/11/2023)</span> <span id="current-icon">☀️</span></h2>
+                <div class="current-weather">
+                    <p id="current-temp">Temp: 90.0 °F</p>
+                    <p id="current-wind">Wind: 7 MPH</p>
+                    <p id="current-humidity">Humidity: 32%</p>
+                </div>
+            </div>
+            <div class="next-five-days-container">
+                <h2>5-Day Forecast:</h2>
+                <div class="next-five-days">
+                    <!-- Five day forecast here -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>
