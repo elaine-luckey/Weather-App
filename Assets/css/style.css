@@ -1,1 +1,205 @@
-/* Creation of file */
+/* Import of Google Fonts for all text */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap');
+
+/* Universal browser reset settings */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Body */
+body {
+    font-family: 'Nunito', sans-serif;    
+    margin: 8px;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+/* Hide Class */
+.hide {
+    display: none;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    background: linear-gradient(90deg, rgb(91, 91, 184), rgb(0, 0, 99));
+}
+
+header h1 {
+    margin: 1rem 0 1rem;
+    font-weight: 500;
+    font-size: 2.5rem;
+}
+
+/* Main container */
+.main-container {
+    width: 100%;
+    display: flex;
+}
+
+/* Aside */
+aside {
+    width: 20%;
+    padding: 0 0.5rem;
+}
+
+aside h2 {
+    margin: 0.5rem 0;
+}
+
+aside input {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.6rem 0.5rem;
+    border: 1px solid black;
+    border-radius: 0.2rem;
+    outline: none;
+}
+
+aside button {
+    width: 100%;
+    cursor: pointer;
+    background-color: rgb(118, 153, 235);
+    color: rgb(221, 221, 221);
+    padding: 0.5rem 0;
+    border-radius: 0.2rem;
+    border: none;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+    transition: 0.15s ease-out;
+}
+
+aside button:hover {
+    color: #fff;
+}
+
+aside button:active {
+    transform: scale(0.98);
+}
+
+.searched-cities button {
+    background-color: rgb(173, 173, 173);
+    color: #000;
+    margin: 1rem 0 0;
+}
+
+/* Section */
+section {
+    width: 70%;
+    margin-top: 1rem;
+    margin-left: 1rem;
+}
+
+/* Current weather */
+.current-weather-container {
+    border: 1px solid #000;
+    padding: 0.5rem 0.3rem 0;
+}
+
+.current-weather p {
+    margin: 1.3rem 0;
+}
+
+/* Next five days weather */
+.next-five-days-container {
+    width: 100%;
+}
+
+.next-five-days-container h2 {
+    font-size: 1.3rem;
+    margin: 1rem 0;
+}
+
+.next-five-days {
+    display: flex;
+    justify-content: space-between;
+}
+
+.day {
+    color: #fff;
+    background-color: rgb(49, 53, 82);
+    padding: 0.3rem 0.3rem 0.5rem;
+    width: 18%;
+}
+
+.day p {
+    margin: 1rem 0;
+}
+
+#day-icon {
+    margin: 1rem 0 0 1rem;
+    font-size: 1.3rem;
+}
+
+/* Media query - mobile view */
+@media screen and (max-width: 777px) {
+    body {
+        margin: 0;
+    }
+
+    header h1 {
+        margin: 0.6rem 0 0.6rem 0;
+    }
+
+    .main-container {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    aside {
+        width: 60%;
+    }
+
+    aside h2 {
+        margin-top: 1rem;
+        text-align: center;
+    }
+
+    aside .searched-cities {
+        display: none;
+    }
+
+    aside hr {
+        display: none;
+    }
+
+    section {
+        margin: 1rem 0 3rem;
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 632px) {
+    .current-weather-container {
+        text-align: center;
+    }
+
+    .next-five-days-container h2 {
+        text-align: center;
+    }
+
+    .next-five-days {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .day {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 410px) {
+    h2 {
+        font-size: 1.3rem;
+    }
+}
