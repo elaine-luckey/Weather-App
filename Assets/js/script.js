@@ -45,17 +45,23 @@ const fetchData = (cityName) => {
             console.log(data)
         })
 }
-// ----------------------------------------------------------------------------------------------------------------------------------------------------
 
+// Defining an asynchronous function that takes the parameter cityName
 const fetchFiveDays = async (cityName) => {
+
+//Declaring the const variable requestURL to add the cityName and myAPIKey to query the OpenWeatherMap API
     const requestURL = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=imperial&appid=${myAPIKey}`
 
+//Fetching the API and assigning it to the response - await is used so the code will not execute before the API is fetched
     const response = await fetch(requestURL)
 
+//Getting the json from the response and assigning it to the data variable - using await again to ensure the last line executes before this line
     const data = await response.json()
 
+//Clearing any existing content
     nextFiveDays.innerHTML = ''
 
+//Looping through the block of code 5 times to dynamically generate the date, weather icon, temperature, wind speed, and humidity for each day in the location the user searched for.
     for (let i = 0; i < 5; i++) {
         const nextDayForecast = document.createElement('div')
         nextDayForecast.classList.add('day')
@@ -66,38 +72,44 @@ const fetchFiveDays = async (cityName) => {
             <p>Wind: ${data.list[7 + (8 * i)].wind.speed} MPH</p>
             <p>Humidity: ${data.list[7 + (8 * i)].main.humidity}%</p>
         `
-
         nextFiveDays.appendChild(nextDayForecast)
         }
-         
-    console.log(data)
 }
 
+//Defining a function and passing a parameter of cityName
 const caseSensitivity = (cityName) => {
+
+//converting cityName to lower case and splitting the array with a space in between
     let updateCity = cityName.toLowerCase().split(" ");
+//declaring returnCity as an empty string
     let returnCity = '';
     
+// for loop to display the cities correctly
     for (let i = 0; i < updateCity.length; i++) {
         updateCity[i] = updateCity[i][0].toUpperCase() + updateCity[i].slice(1);
         returnCity += " " + updateCity[i];
     }
+//return returnCity and trim any excess whitespace
     return returnCity.trim();
 }
 
+//Add previous city searches to the search history
 const addCityToList = (city) => {
     let newCity = caseSensitivity(city)
 
     let exist = false
     
+//If the city already exists do not display the city again, so the exist equals true
     for (let c of cityList) {
         if (c === newCity) {
             exist = true
         }
     }
 
+//if it does not exist, add the new city to the front of the array
     if (!exist) {
         cityList.unshift(newCity)
-
+//create a new button for the new city and at it to the top
         const cityBtn = document.createElement('button')
         cityBtn.classList.add('city-btn')
         cityBtn.innerText = `${cityList[0]}`
@@ -106,6 +118,7 @@ const addCityToList = (city) => {
         return
     }
     
+//if the cityList is greater than 8, remove the last city that is on the list
     if (cityList.length > 8) {
         let nodes = document.querySelectorAll('.city-btn')
         let last = nodes[nodes.length - 1]
@@ -113,7 +126,8 @@ const addCityToList = (city) => {
 
         cityList.pop()
     }
-    
+
+//store the cityList to the local storage
     localStorage.setItem('cities', JSON.stringify(cityList))
 
     document.querySelectorAll('.city-btn').forEach(btn => {
@@ -124,9 +138,11 @@ const addCityToList = (city) => {
     })
 }
 
+//get local storage of the array for the previous searched cities
 const getLocalStorage = () => {
     const storageList = JSON.parse(localStorage.getItem('cities'))
 
+//if there are no cities on the list, return false
     if (!storageList) {
         return false
     }
@@ -136,6 +152,7 @@ const getLocalStorage = () => {
     addStorageList()
 }
 
+//Add cities to the search history
 const addStorageList = () => {
     if (cityList.length > 0) {
         cityList.forEach(city => {
@@ -161,6 +178,7 @@ const addStorageList = () => {
     })   
 }
 
+//once the data is fetched from the API, clear the search box after the search is completed
 const onFormSubmit = (event) => {
     event.preventDefault()
     
@@ -168,14 +186,17 @@ const onFormSubmit = (event) => {
     
     cityName.value = ''
 
+//if the user enters a city, fetch the data. if the user does not enter a city, send an error message
     if (city) {
         fetchData(city)
     } else {
-        alert("Please enter a city")
+        alert("Please enter a city to continue!")
         return
     }
 }
 
+//event listener for the search
 searchForm.addEventListener('submit', onFormSubmit)
 
+//grab the local storage from the start of the page
 getLocalStorage()
